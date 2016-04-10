@@ -33,6 +33,11 @@ gulp.task('html', function () {
     .pipe(webserver.reload());
 });
 
+gulp.task('build-website', function() {
+	gulp.src(config.htmlDir + '/*.html')
+    	.pipe(gulp.dest('./'));
+});
+
 // less 解析
 gulp.task('build-less', function () {
     gulp.src(config.assetsDir + '/less/*.less') //该任务针对的文件
@@ -98,9 +103,14 @@ gulp.task('build-js', function() {
 		.pipe(gulp.dest(config.assetsDir + '/js'));
 });
 
+gulp.task('build-image', function() {
+	gulp.src(config.assetsDir + '/images/*')
+		.pipe(gulp.dest(config.publicDir + '/images'));
+});
+
 // 定义develop任务在日常开发中使用
 gulp.task('develop',function(){
-	gulp.run('build-less', 'build-js', 'build-bootstrap', 'stylesheets', 'javascripts');
+	gulp.run('build-less', 'build-js', 'build-bootstrap', 'stylesheets', 'javascripts', 'build-image', 'build-website');
 	gulp.watch(config.assetsDir + '/less/*.less', ['build-less']);
 	gulp.watch(config.assetsDir + '/css/*.css', ['stylesheets']);
 	gulp.watch(config.assetsDir + '/js/*.js', ['javascripts']);
@@ -108,7 +118,7 @@ gulp.task('develop',function(){
 });
 
 gulp.task('prod',function(){
-	gulp.run('build-less', 'build-js', 'build-bootstrap', 'stylesheets', 'javascripts');
+	gulp.run('build-less', 'build-js', 'build-bootstrap', 'stylesheets', 'javascripts', 'build-image', 'build-website');
   // gulp.watch(config.assetsDir + '/less/*.less', ['build-less']);
   // gulp.watch(config.assetsDir + '/js/*.js', ['build-js']);
 });
