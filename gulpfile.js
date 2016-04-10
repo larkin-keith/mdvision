@@ -10,6 +10,7 @@ var less = require('gulp-less'),            // less
     clean = require('gulp-clean');          //清空文件夹
 // 
 var webserver = require('gulp-connect');
+// var imagemin = require('gulp-imagemin');
 
 var config = {
 	nodeModulesDir: './node_modules',
@@ -112,6 +113,7 @@ gulp.task('build-js', function() {
 
 gulp.task('build-image', function() {
 	gulp.src(config.assetsDir + '/images/*')
+		// .pipe(imagemin())
 		.pipe(gulp.dest(config.publicDir + '/images'));
 });
 
