@@ -77,6 +77,13 @@ gulp.task("clean", function (done) {
     //return cache.clearAll(done);
     return gulp.src([
     	config.publicDir,
+    	'./index.html',
+    	'./gallery.html',
+    	'./about.html',
+    	'./pages.html',
+    	'./contact.html',
+    	'./single.html',
+    	'./blog.html',
     	// '!' + config.publicDir + '/images',
     	// '!' + config.publicDir + '/fonts',
     ], {
